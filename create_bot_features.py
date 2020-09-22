@@ -8,7 +8,7 @@ from copy import deepcopy
 from vector_functionality import query_term_freq,centroid_similarity,calculate_similarity_to_docs_centroid_tf_idf\
     ,document_centroid,calculate_semantic_similarity_to_top_docs,get_text_centroid,add_dict,cosine_similarity
 from utils import clean_texts,read_trec_file,load_file,get_java_object,create_trectext,create_index,run_model,create_features_file_diff,\
-    read_raw_trec_file,create_trec_eval_file,order_trec_file,retrieve_scores,transform_query_text,read_queries_file
+    read_raw_trec_file,create_trec_eval_file,order_trec_file,retrieve_scores,transform_query_text,read_queries_file,create_index_to_query_dict
 from nltk import sent_tokenize
 import numpy as np
 import math
@@ -309,6 +309,7 @@ def run_reranking(new_index,sentence_in,qid,specific_ws,ref_doc,out_index,texts,
                                               new_feature_file, specific_ws, options.scripts_path,options.java_path,options.swig_path,options.stopwords_file,options.queries_text_file,options.home_path)
     logger.info("creating docname index")
     docname_index = create_index_to_doc_name_dict(features_file)
+    query_index = create_index_to_query_dict(features_file)
     logger.info("docname index creation is completed")
     logger.info("features creation completed")
     logger.info("running ranking model on features file")
@@ -316,7 +317,7 @@ def run_reranking(new_index,sentence_in,qid,specific_ws,ref_doc,out_index,texts,
                            options.model)
     logger.info("ranking completed")
     logger.info("retrieving scores")
-    scores = retrieve_scores(docname_index, score_file)
+    scores = retrieve_scores(docname_index,query_index, score_file)
     logger.info("scores retrieval completed")
     logger.info("creating trec_eval file")
     tmp_trec = create_trec_eval_file(scores, trec_file)
