@@ -23,6 +23,8 @@ There are 2 modes for running the code. The first one is "qrels" mode. In this m
 # Example run command
 An example for a running command is at "create_features_command.sh" file. In order to run it, modify the input paramters according to your own file system.
 
+# More usage
+To use parts of the code on the dataset published for the paper (https://github.com/asrcompetition/content_modification_dataset), folder data contains the queries used - bot_queries.txt and bot_queries.xml
 
 # Parameters
 --mode={features/qrels}
