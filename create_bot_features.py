@@ -194,6 +194,8 @@ def create_features(raw_ds, ranked_lists, doc_texts, top_doc_index, ref_doc_inde
                                                                     word_embd_model, True)
         feature_vals['SimilarityToPrevRef'][pair] = context_similarity(replace_index, ref_sentences, sentence_out,
                                                                        "prev", word_embd_model, True)
+        feature_vals['SimilarityToPredRef'][pair] = context_similarity(replace_index, ref_sentences, sentence_out,
+                                                                       "pred", word_embd_model, True)
     write_files(feature_list,feature_vals,output_dir,qid,ref_doc_index)
 
 def feature_creation_parallel(raw_dataset_file, ranked_lists, doc_texts, top_doc_index, ref_doc_index, doc_tfidf_vectors_dir, tfidf_sentence_dir, queries, output_feature_files_dir,output_final_features_dir,workingset_file):
