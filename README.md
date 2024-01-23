@@ -29,7 +29,7 @@ To use parts of the code on the dataset published for the paper (https://github.
 # Data
 The data folders contains the following important files:
 1. coherency_aggregated_labels.txt - the aggregated coherency labels for sentence pairs. 
-2. waterloo_scores_file.txt - waterloo estimations for documents. A document is considered as valid with a score greater or equal to 60.
+2. waterloo_scores_file.txt - waterloo estimations for documents. A document is considered as valid with a score greater or equal to 60 (important for removing non-valid documents intended for promotion when creating the SEO sentence-pairs ranking model).
 
 # Scripts
 The scripts folder contains the following components:
