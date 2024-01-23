@@ -26,10 +26,23 @@ An example for a running command is at "create_features_command.sh" file. In ord
 # More usage
 To use parts of the code on the dataset published for the paper (https://github.com/asrcompetition/content_modification_dataset), folder data contains the queries used - bot_queries.txt and bot_queries.xml
 
+# Data
+The data folders contains the following important files:
+1. coherency_aggregated_labels.txt - the aggregated coherency labels for sentence pairs. 
+2. waterloo_scores_file.txt - waterloo estimations for documents. A document is considered as valid with a score greater or equal to 60.
+
+# Scripts
+The scripts folder contains the following components:
+1. generate.pl - a perl script that creates a features file in LTR format intended for document ranking (the 25 features described in the paper). This script conducts min-max normalization on feature values on a query basis. Please note that this script does not calculate the feature values but rather reads the directory in which the values are stored and outputs the final features file.
+2. generateSentences.pl - same as generate.pl, however, this script creates the features file for the sentence pairs ranking procedure (also, min-max normalized on a query basis).
+3. order.pl - a perl script that reads the output of a LambdaMART model and creates a ranked list of documents.
+
+
+
 # Parameters
 --mode={features/qrels}
 
---index_path=\<your-indri-index-path\>
+--index_path=\<your-indri-index-path\> (the index should contain all the original documents involved in competition - this is only for the SEO ranking model creation. For inference it is possible to operate on an epoch level, it means one should merge current epoch's docs with the base index as a starting point).
   
 --raw_ds_out=\<output-for-raw-sentences-dataset\>
   
