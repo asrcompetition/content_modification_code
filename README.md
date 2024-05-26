@@ -56,7 +56,7 @@ The scripts folder contains the following components:
   
 --sentences_tfidf_dir=\<path-to-sentence-tfidf-directory\> -\> the code creates tf-idf represantation of sentences 
   
---queries_file=data/queries_seo_exp.xml -\> xml of queries
+--queries_file=data/queries_seo_exp.xml -\> xml file of queries. Queries are expected to be normalized according to the index specifications. The code does not conduct additional normalization over query's text. In case you run with other set of queries, create a new file according to the format of the specified file and save the query's text in a normalized manner (for example: stemmed, lowercased, stopword removed and unique token queries)
   
 --scores_dir=\<path-to-ranklib-model-scores-directory\> -\> scores directory for reranking
   
@@ -84,7 +84,7 @@ The scripts folder contains the following components:
 
 --home_path=~/
 
---queries_text_file=data/working_comp_queries.txt
+--queries_text_file=data/working_comp_queries.txt - this file must be aligned with the --queries_file (xml file) content (same set of queries - ids and texts)
 
 --stopwords_file=data/stopwords_list 
 
